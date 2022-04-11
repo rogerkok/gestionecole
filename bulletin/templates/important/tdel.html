@@ -1,0 +1,21 @@
+
+                            <td colspan="2">{{note.matiere.matiere.nom }}</td>
+                            <td>{{note.interro }}</td>
+                             <td>{{note.devoir }}</td>
+                            <td>{{note.moycl}}</td>
+                            <td>{{note.compo}}</td>
+                            <td>{{note.moymat}}
+                            <td>{{note.matiere.coef}}</td>
+                            <td>{{note.moycoef}}</td>
+                            {% if note.rang == 1 %}
+                             {% if eleve.sexe == 'Masculin' %}
+                                <td>{{note.rang}} er</td>
+                             {% elif eleve.sexe == 'Féminin' %}
+                                <td>{{note.rang}} ère</td>
+                            {% endif %}
+                            {% else %}
+                                <td>{{note.rang}} è</td>
+                            {% endif %}
+                            {% include 'moyenne/apre.html' %}
+                            <td colspan="2">{{note.matiere.enseignant.nom}} {{note.matiere.enseignant.prenom}}</td>
+

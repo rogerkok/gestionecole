@@ -1,0 +1,33 @@
+body {
+    font-family: Oswald;
+    background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.1)), url("{{classe.etbs.plan.url}}")
+}
+tr, td {
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    background-position: center;
+}
+.matiere {
+    text-align : center;
+}
+
+ table {
+  table-layout: fixed;
+  width: 120px;
+  border: 3px solid black;
+}
+
+tr, td {
+  border: 1px solid;
+  height: 15px;
+}
+
+td {
+  border: 1px solid blue;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

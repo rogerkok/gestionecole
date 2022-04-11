@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %} Notes de {{matiere.matiere.nom}} des élèves de la classe de {{matiere.classe.nom}}{% endblock %}
+{% block content %}
+
+
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{% url 'home_page' %}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Notes de {{matiere.matiere.nom}} des élèves de la classe de {{matiere.classe.nom}}</li>
+    </ol>
+
+
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> Notes de {{matiere.matiere.nom}} des élèves de la classe de {{matiere.classe.nom}}
+           <hr>
+            <i class="fa fa-user"></i>Enseignant {{matiere.enseignant.nom}} {{matiere.enseignant.prenom}}
+        </div>
+        <div class="card-body">
+<a class="btn btn-outline-primary btn-sm" href="{% url 'eleves_matiere' pk=matiere.id %}" role="button">Matières</a>
+           <form method="post" role="form" enctype="multipart/form-data">{% csrf_token %}
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                    <thead>
+                    <tr>
+
+                       <th>ID</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Sexe</th>
+  <th>Interrogation</th>
+                           <th>
+                       Devoir</th>
+                        <th>Moyenne de classe</th>
+                           <th>Composition</th>
+                        <th>Moyenne</th>
+
+                    </tr>
+                    </thead>
+
+                    <tfoot>
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+<th>Sexe</th>
+
+                  <th>Interrogation</th>
+                           <th>
+                       Devoir</th>
+                        <th>Moyenne de classe</th>
+                           <th>Composition</th>
+                        <th>Moyenne</th>
+                        <th>Action</th>
+
+
+                    </tr>
+                    </tfoot>
+                    <tbody>
+
+                    {% for note in notes %}
+
+                        <tr>
+                            <td>{{note.id }}</td>
+                            <td>{{note.eleve.nom }}</td>
+                            <td>{{note.eleve.prenom }} </td>
+                            <td>{{note.eleve.sexe }} </td>
+                            <td>{{note.interro }}</td>
+                             <td>{{note.devoir }}</td>
+                            <td>{{note.moycl}}</td>
+                            <td>{{note.compo}}</td>
+                            <td>{{note.moymat}}</td>
+
+                            <td><a class="btn btn-outline-primary btn-sm"
+                                   href="{% url 'moyenne_edit' pk=note.id %}" role="button">Modiffier</a>
+                                <a class="btn btn-outline-primary btn-sm"
+                                   href="{% url 'moyenne_delete' pk=note.id %}" role="button">Supprimer</a>
+                                <a class="btn btn-outline-primary btn-sm"
+                                   href="{% url 'elevebul' pk=note.eleve.id %}" role="button">Bulletin</a>
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+            </div>
+
+
+                </form>
+            <a class="btn btn-outline-primary btn-sm" href="{% url 'eleves_matiere' pk=matiere.id %}" role="button">Matières</a>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+{% endblock %}

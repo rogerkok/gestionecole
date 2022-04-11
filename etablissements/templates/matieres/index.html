@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{% url 'home_page' %}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Liste des matieres</li>
+    </ol>
+
+
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> Liste des matieres
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+
+                       <th>ID</th>
+                        <th>nom matière</th>
+                        <th>Classe</th>
+                        <th>Enseignant</th>
+                        <th>Coeficient</th>
+
+                        <th>Action</th>
+
+
+                    </tr>
+                    </thead>
+
+                    <tfoot>
+                    <tr>
+
+                        <th>ID</th>
+                        <th>nom matière</th>
+                        <th>Classe</th>
+                        <th>Enseignant</th>
+                        <th>Coeficient</th>
+
+                        <th>Action</th>
+
+
+                    </tr>
+                    </tfoot>
+                    <tbody>
+
+                    {% for matiere in matieres %}
+
+                        <tr>
+                            <td>{{matiere.id }}</td>
+                            <td>{{matiere.matiere.nom }}</td>
+                            <td>{{matiere.classe.nom }}</td>
+                            <td>{{matiere.enseignant.nom }} {{matiere.enseignant.prenom }}</td>
+                             <td>{{matiere.coef }}</td>
+
+
+
+
+                            <td><a class="btn btn-outline-primary btn-sm"
+                                   href="{% url 'matiere_show' pk=matiere.id %}" role="button">Detail</a>
+  <a class="btn btn-outline-primary btn-sm" href="{% url 'matiere_edit' pk=matiere.id %}" role="button">Modifier</a>
+                                  <a class="btn btn-outline-primary btn-sm" href="{% url 'eleves_matiere' pk=matiere.id %}" role="button">Elèves</a>
+                                <a class="btn btn-outline-primary btn-sm" href="{% url 'notepdf' pk=matiere.id %}" role="button">Imprimer</a>
+
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+            <a class="btn btn-outline-primary btn-sm" href="{% url 'classe_index' %}" role="button">classe</a>
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+{% endblock %}

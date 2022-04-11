@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{% url 'home_page' %}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Liste des élèves</li>
+    </ol>
+
+
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> Liste des élèves
+        </div>
+        <div class="card-body">
+             <a class="btn btn-outline-primary btn-sm" href="{% url 'eleve_new' %}" role="button">Nouveau Eléve</a>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+
+                       <th>ID</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Classe</th>
+                        <th>Sexe</th>
+                        <th>Statut</th>
+
+                        <th>Action</th>
+
+
+                    </tr>
+                    </thead>
+
+                    <tfoot>
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Classe</th>
+                        <th>Sexe</th>
+                        <th>Statut</th>
+
+                        <th>Action</th>
+
+
+                    </tr>
+                    </tfoot>
+                    <tbody>
+
+                    {% for eleve in eleves %}
+
+                        <tr>
+                            <td>{{eleve.id }}</td>
+                            <td>{{eleve.nom }}</td>
+                            <td>{{eleve.prenom }} </td>
+                            <td>{{eleve.classe.nom }}</td>
+                             <td>{{eleve.sexe }}</td>
+                            <td>{{eleve.statut }}</td>
+
+
+
+
+                            <td><a class="btn btn-outline-primary btn-sm"
+                                   href="{% url 'eleve_show' pk=eleve.id %}" role="button">Detail</a>
+  <a class="btn btn-outline-primary btn-sm" href="{% url 'eleve_edit' pk=eleve.id %}" role="button">Modifier</a>
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+            <a class="btn btn-outline-primary btn-sm" href="{% url 'eleve_new' %}" role="button">Nouveau Eléve</a>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+{% endblock %}

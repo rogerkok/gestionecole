@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %} suppression de note{% endblock %}
+
+{% block content %}
+
+    <style>
+        .error {
+            color: #dc3545;
+        }
+
+        .success {
+            color: #28a745;
+        }
+    </style>
+
+
+    <div class="container">
+        <div class="card card-register mx-auto mt-5">
+
+            <div class="card-header">Suppression de note </div>
+            <div class="card-body">
+
+
+                <form method="post">{% csrf_token %}
+                    <p>Voullez-vous supprimer la note de "{{ moyenne.matiere.matiere.nom}}" de l'élève "{{moyenne.eleve.nom}} {{moyenne.eleve.prenom}}" ?</p>
+                    <input type="submit" value="Supprimer">
+
+                </form>
+
+
+                <div class="text-center">
+
+                    <a class="d-block small mt-3" href="{% url 'home_page' %}"> Page d'accueil</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

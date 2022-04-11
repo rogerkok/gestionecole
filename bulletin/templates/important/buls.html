@@ -1,0 +1,309 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bulletins | {{classe.nom}}</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'css/adminlte.min.css' %}">
+   <link rel="stylesheet" href="{% static 'css/bul.css' %}">
+</head>
+<body>
+{% for eleve in eleves %}
+<div class="wrapper">
+  <!-- Main content -->
+
+  <section class="invoice" style="background-image: url({{classe.etbs.plan.url}});">
+    <!-- title row -->
+
+    <!-- info row -->
+    <div class="row invoice-info">
+      <div class="col-sm-4 invoice-col">
+
+        <address>
+          <strong>{{classe.etbs.inspection.dre.ministere}}</strong><br>
+          Direction de l'Enseignement {{classe.etbs.inspection.dre.nom}}<br>
+         Inspection de l'Enseignement Secondaire
+          {{classe.etbs.inspection.nom}}<br>
+
+        </address>
+      </div>
+      <div class="col-sm-1 invoice-col">
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-3 invoice-col" style="text-align:center;" >
+
+        <address>
+          <img src="{{classe.etbs.logo.url}}" height="100px">
+        </address>
+      </div>
+      <div class="col-sm-1 invoice-col">
+
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-3 invoice-col" style="text-align:center;">
+        <b >République Togolaise </b><br>
+        Travail-Liberté-Patrie<br>
+        <img src="{{classe.etbs.inspection.dre.drapeau.url}}" height="60px">
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+     <div class="row invoice-info">
+
+
+      <div class="col-sm-3 invoice-col">
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-6 invoice-col">
+
+        <address>
+  <h2><u>{{classe.etbs.nom}}</u></h2>
+        </address>
+      </div>
+      <div class="col-sm-3 invoice-col">
+
+      </div>
+
+      <!-- /.col -->
+    </div>
+     <div class="row invoice-info">
+
+
+      <div class="col-sm-6 invoice-col">
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-4 invoice-col">
+
+        <address>
+  <h4>Année Scolaire : {{examen.periode.anneescolaire.nom}}</h4>
+        </address>
+      </div>
+      <div class="col-sm-2 invoice-col">
+
+      </div>
+
+      <!-- /.col -->
+    </div>
+
+   <div class="row invoice-info">
+
+
+      <div class="col-sm-3 invoice-col">
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-6 invoice-col">
+
+        <address>
+  <h2><u> Bulletin d'évaluation du {{examen.periode.periode}}</u></h2>
+        </address>
+      </div>
+      <div class="col-sm-3 invoice-col">
+
+      </div>
+     </div>
+
+      <!-- /.col -->
+    <div class="row invoice-info">
+
+      <div class="col-sm-1 invoice-col">
+      </div>
+      <div class="col-sm-1 invoice-col">
+      Classe :
+      </div>
+        <div class="col-sm-1 invoice-col">
+     {{classe.nom}}
+      </div>
+ <div class="col-sm-1 invoice-col">
+      </div>
+      <div class="col-sm-1 invoice-col">
+      Effectif :
+      </div>
+        <div class="col-sm-1 invoice-col">
+     {{classe.eff}}
+      </div>
+   <div class="col-sm-1 invoice-col">
+      </div>
+      <div class="col-sm-1 invoice-col">
+      </div>
+        <div class="col-sm-1 invoice-col btn btn-outline-primary">
+     {{eleve.sexe}}
+      </div>
+       <div class="col-sm-1 invoice-col">
+      </div>
+
+        <div class="col-sm-1 invoice-col btn btn-outline-primary">
+     {{eleve.statut}}
+      </div>
+
+      </div>
+     <div class="row invoice-info">
+
+
+      <div class="col-sm-3 invoice-col">
+      Nom et Prénoms
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-6 invoice-col">
+
+        <address>
+<b>{{eleve.nom.upper}} {{eleve.prenom.upper}}</b>
+        </address>
+      </div>
+      <div class="col-sm-3 invoice-col">
+
+      </div>
+     </div>
+    <!-- Table row -->
+    <div class="row">
+      <div class="col-12 table-responsive">
+        <table class="table table-striped table-bordered">
+          <thead>
+          <tr class="matiere"><th colspan="12" style="text-align:center;">MATIERES OBLIGATOIRES</th></tr>
+          <tr>
+            {% include 'important/thel.html' %}
+          </tr>
+          </thead>
+          <tbody>
+            {% for note in notes %}
+            {% if note.eleve == eleve %}
+          <tr>
+            {% include 'important/tdel.html' %}
+          </tr>
+          {% endif %}
+          {% endfor %}
+           <thead>
+
+        </tbody>
+        </table>
+
+          <table class="table table-striped table-bordered">
+             <thead>
+          <tr class="matiere"><th colspan="12" style="text-align:center;">MATIERES FACULTATIVES</th></tr>
+             </thead>
+              <small>
+            <tbody>
+            {% for facultative in facultatives %}
+
+          <tr>
+            {% include 'important/tdf.html' %}
+          </tr>
+
+          {% endfor %}
+
+
+          </tbody>
+                  </small>
+        </table>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+      <!-- accepted payments column -->
+
+      <!-- /.col -->
+        <div class="col-3">
+            <div class="table-responsive">
+          <table class="table table-striped table-bordered">
+            {% include 'important/tdm.html' %}
+          </table>
+        </div>
+        </div>
+      <div class="col-3">
+
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered">
+            {% include 'important/tfel.html' %}
+          </table>
+        </div>
+      </div>
+         <div class="col-3">
+
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered">
+            {% include 'important/feli.html' %}
+          </table>
+        </div>
+      </div>
+         <div class="col-3">
+
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered">
+            {% include 'important/abs.html' %}
+          </table>
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+      <div class="row">
+      <!-- accepted payments column -->
+
+      <!-- /.col -->
+          <div class="col-3">
+             <div class="table-responsive">
+          <table class="table table-striped table-bordered">
+            {% include 'important/moy.html' %}
+          </table>
+        </div>
+          </div>
+
+      <div class="col-6">
+             <div class="table-responsive" style="text-align:center;">
+        <b>Observation et Decision du Conseil</b><br><br>
+             {% include 'moyenne/aprem.html' %}
+             </div>
+          </div>
+
+          <div class="col-3" style="text-align:center;">
+              Le titulaire de la classe<br><br><BR>
+              <b> {{classe.titulaire.nom}} {{classe.titulaire.prenom}}</b>
+          </div>
+      </div>
+       <div class="row invoice-info" >
+           <div class="col-sm-1 invoice-col"></div>
+      <div class="col-sm-3 invoice-col">
+
+        <address>
+          {{classe.etbs.adresse}},<br>
+          BP: {{classe.etbs.bp}},    Tèl : {{classe.etbs.contact}},<br>
+         Email :
+          {{classe.etbs.email}}<br>
+
+        </address>
+      </div>
+           <div class="col-sm-3 invoice-col" style="text-aligne: center;">
+               Fait à {{classe.etbs.inspection.ville}}, le <script>
+date = new Date().toLocaleDateString();
+document.write(date);
+</script>
+           </div>
+            <div class="col-4" style="text-align:center;">
+              Chef de l'établissement<br><br><BR>
+              <b> {{classe.etbs.chef.nom}} {{classe.etbs.chef.prenom}}</b>
+          </div>
+       </div><br><BR>
+    </section>
+
+  <!-- /.content -->
+    <script>
+  window.addEventListener("load", window.print());
+</script>
+
+</div>
+{% endfor %}
+<!-- ./wrapper -->
+<!-- Page specific script -->
+
+
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+
+                            <td colspan="2">{{facultative.matiere.nom }}</td>
+                            <td>{{facultative.interro }}</td>
+                             <td>{{facultative.devoir }}</td>
+                            <td>{{facultative.moycl}}</td>
+                            <td>{{facultative.compo}}</td>
+                            <td>{{facultative.moymat}}</td>
+                            <td>{{facultative.coef1}}</td>
+                            <td>{{facultative.moycoef}}</td>
+                            {% if facultative.rang == 1 %}
+                             {% if eleve.sexe == 'Masculin' %}
+                                <td>{{facultative.rang}} er</td>
+                             {% elif eleve.sexe == 'Féminin' %}
+                                <td>{{facultative.rang}} ère</td>
+                            {% endif %}
+                            {% else %}
+                                <td>{{facultative.rang}} </td>
+                            {% endif %}
+                            <td></td>
+                            <td colspan="2">{{facultative.enseignant.nom}} {{facultative.enseignant.prenom}}</td>
+

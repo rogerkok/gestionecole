@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %} Nouvelle direction régionnale{% endblock %}
+
+{% block content %}
+
+    <style>
+        .error {
+            color: #dc3545;
+        }
+
+        .success {
+            color: #28a745;
+        }
+    </style>
+
+
+    <div class="container">
+        <div class="card card-register mx-auto mt-5">
+
+            <div class="card-header">Enregistrer une classe</div>
+            <div class="card-body">
+
+
+                <form method="post" role="form" enctype="multipart/form-data">{% csrf_token %}
+
+
+                    {{ form.as_p }}
+
+
+
+
+                    <button type="submit" class="btn btn-primary btn-block">{{submit_text}}</button>
+
+                </form>
+
+
+                <div class="text-center">
+
+                    <a class="d-block small mt-3" href="{% url 'home_page' %}"> Page d'accueil</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

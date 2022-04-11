@@ -1,0 +1,24 @@
+version: '3.10'
+
+services:
+
+  web:
+    # construire l'image depuis le Dockerfile dans le dossier actuel
+    image: ecole:latest
+    # exécuter la commande Django runserver
+    # qui démarre un serveur de développement
+    # https://docs.djangoproject.com/en/2.1/ref/django-admin/#runserver
+    command: python manage.py runserver 0.0.0.0:8001
+    # monter le dossier local actuel (dossier du projet) dans /app
+    # dans le conteneur
+    volumes:
+      - 'app:/csi/'
+    # lier le port 8000 dans le conteneur au port 8000 dans la machine locale
+    ports:
+      - 8001:8000
+    # s'assurer que le service db est exécuté avant de démarrer le service web (Django)
+
+
+volumes:
+    app:
+      driver: local

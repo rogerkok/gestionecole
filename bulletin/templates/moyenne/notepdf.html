@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %} Notes de {{matiere.matiere.nom}} des élèves de la classe de {{matiere.classe.nom}}{% endblock %}
+{% block content %}
+
+
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{% url 'home_page' %}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Notes de {{matiere.matiere.nom}} des élèves de la classe de {{matiere.classe.nom}}</li>
+    </ol>
+
+
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> Notes de {{matiere.matiere.nom}} des élèves de la classe de {{matiere.classe.nom}}
+           <hr>
+            <i class="fa fa-user"></i>Enseignant {{matiere.enseignant.nom}} {{matiere.enseignant.prenom}}
+        </div>
+        <div class="card-body">
+
+
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                    <thead>
+                    <tr>
+
+                       <th>ID</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Sexe</th>
+  <th>Interrogation</th>
+                           <th>
+                       Devoir</th>
+                        <th>Moyenne de classe</th>
+                           <th>Composition</th>
+                        <th>Moyenne</th>
+                        <th>Moyenne Coeficié</th>
+                        <th>appréciation</th>
+
+                    </tr>
+                    </thead>
+
+                    <tfoot>
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+<th>Sexe</th>
+
+                  <th>Interrogation</th>
+                           <th>
+                       Devoir</th>
+                        <th>Moyenne de classe</th>
+                           <th>Composition</th>
+                        <th>Moyenne</th>
+                          <th>Moyenne Coeficié</th>
+
+
+                    </tr>
+                    </tfoot>
+                    <tbody>
+
+                    {% for note in notes %}
+
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{note.eleve.nom }}</td>
+                            <td>{{note.eleve.prenom }} </td>
+                            <td>{{note.eleve.sexe }} </td>
+                            <td>{{note.interro }}</td>
+                             <td>{{note.devoir }}</td>
+                            <td>{{note.moycl}}</td>
+                            <td>{{note.compo}}</td>
+                            <td>{{note.moymat}}</td>
+                             <td>{{note.moycoef}}</td>
+
+                            {% include 'moyenne/apre.html' %}
+                        </tr>
+                  
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+{% endblock %}

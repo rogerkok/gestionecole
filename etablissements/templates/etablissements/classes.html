@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}classes de l'établissement {{ ets.nom}} {% endblock %}
+{% block content %}
+
+
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{% url 'home_page' %}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Liste des classes de l'établissement {{ ets.nom}}</li>
+    </ol>
+
+
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> Liste des classes
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+
+                        <th>ID</th>
+                        <th>nom</th>
+                        <th>Série</th>
+                        <th>Etablissement</th>
+
+
+                        <th>Action</th>
+
+
+                    </tr>
+                    </thead>
+
+                    <tfoot>
+                    <tr>
+
+                        <th>ID</th>
+                        <th>nom</th>
+                        <th>Série</th>
+                        <th>Etablissement</th>
+
+
+                        <th>Action</th>
+
+
+                    </tr>
+                    </tfoot>
+                    <tbody>
+
+                    {% for classe in classes %}
+
+                        <tr>
+                            <td>{{ classe.id }}</td>
+                            <td>{{ classe.nom }}</td>
+                            <td>{{ classe.serie }}</td>
+                            <td>{{ classe.etbs.nom }}</td>
+
+
+
+
+                            <td><a class="btn btn-outline-primary btn-sm"
+                                   href="{% url 'classe_show' pk=classe.id %}" role="button">Detail</a>
+                               <a class="btn btn-outline-primary btn-sm" href="{% url 'matieres_classe' pk=classe.id %}" role="button">Matières de classe</a>
+                                <a class="btn btn-outline-primary btn-sm" href="{% url 'pdf_bul' pk=classe.id %}" role="button">Bulletins</a>
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+{% endblock %}

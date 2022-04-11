@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{% url 'home_page' %}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{% url 'matiere_index' %}">Liste des matieres</a>
+        </li>
+        <li class="breadcrumb-item active">Detail matiere</li>
+    </ol>
+
+
+
+    <div class="row">
+        <div class="col">
+            <h3 class="text-center">Information de la matiere</h3>
+            <li class="list-group">
+                <li class="list-group-item"><strong>Matricule : </strong> {{eleve.id }}</li>
+
+                <li class="list-group-item"><strong>Nom et prenoms </strong>
+                    : {{ eleve.nom.upper }} {{ eleve.prenom }}
+                </li>
+                <li class="list-group-item"><strong>classe : </strong> {{eleve.classe.nom }}</li>
+
+                   </li>
+
+                <a target="_blank" class="list-group-item list-group-item-action active text-center"
+                   href="{% url 'eleves_classe' pk=eleve.classe.id %}"><span>Liste des elèves</span></a>
+            </ul>
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+{% endblock %}

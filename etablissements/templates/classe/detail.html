@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{% url 'home_page' %}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{% url 'classe_index' %}">Liste des classes</a>
+        </li>
+        <li class="breadcrumb-item active">Detail Classe</li>
+    </ol>
+
+
+
+    <div class="row">
+        <div class="col">
+            <h3 class="text-center">Information de la classe</h3>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Matricule : </strong> {{ classe.id }}</li>
+
+                <li class="list-group-item"><strong>Nom </strong>
+                    : {{ classe.nom.capitalize }}
+                </li>
+                <li class="list-group-item"><strong>Série : </strong> {{ classe.serie }}</li>
+                <li class="list-group-item"><strong>Etablisssement </strong>{{ classe.etbs.nom }}
+                   </li>
+
+                <a target="_blank" class="list-group-item list-group-item-action active text-center"
+                   href="{% url 'classe_show' pk=classe.id %}"><span>Liste des elèves</span></a>
+            </ul>
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+{% endblock %}

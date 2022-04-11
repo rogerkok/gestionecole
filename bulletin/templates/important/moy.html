@@ -1,0 +1,26 @@
+
+
+                    <tr>
+
+                        <th  text-align="center">Moyenne Forte</th>
+                       {% for el in eleves %}
+                        {% if el.rang1 == 1 %}
+                        <td text-align="center">{{ el.moy1}}</td>
+                        {% endif %}
+                        {% endfor%}
+                    </tr>
+                      <tr>
+
+                        <th  text-align="center">Moyenne Faible</th>
+                          {% for el in eleves %}
+                          {% if el.rang1 == classe.eff %}
+                        <td text-align="center">{{ el.moy1}}</td>
+                            {% endif %}
+                          {% endfor %}
+                            </tr>
+                      <tr>
+
+                        <th  text-align="center">Moyenne Classe</th>
+                        <td text-align="center">{{ classe.moygen1}}</td>
+
+                    </tr>

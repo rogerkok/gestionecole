@@ -1,0 +1,34 @@
+
+                    <tr>
+
+                        <th colspan="3" text-align="center">Total des Points</th>
+                        <td colspan="2" text-align="center">{{ eleve.tot1}}</td>
+
+                    </tr>
+                     <tr>
+
+                        <th colspan="3" text-align="center">Total des Coef</th>
+                        <td colspan="2" text-align="center">{{ eleve.totcoef}}</td>
+
+                    </tr>
+                     <tr>
+
+                        <th colspan="3" text-align="center">Moyenne Trim</th>
+                        <td colspan="2" text-align="center">{{ eleve.moy1}}</td>
+
+                    </tr>
+                       <tr>
+
+                          <th colspan="3" text-align="center">Rang</th>
+                         {% if eleve.rang1 == 1 %}
+                             {% if eleve.sexe == 'Masculin' %}
+                                <td colspan="2" text-align="center" >{{eleve.rang1}} er</td>
+                             {% elif eleve.sexe == 'Féminin' %}
+                                <td colspan="2" text-align="center" >{{eleve.rang1}} ère</td>
+                            {% endif %}
+                            {% else %}
+                                <td colspan="2" text-align="center">{{eleve.rang1}} è</td>
+                            {% endif %}
+
+
+                    </tr>

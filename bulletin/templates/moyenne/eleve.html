@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %} Notes de {{eleve.nom}} {{eleve.prenom}} de la classe de {{eleve.classe.nom}}{% endblock %}
+{% block content %}
+
+
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{% url 'home_page' %}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Notes de {{eleve.nom}} {{eleve.prenom}} de la classe de {{eleve.classe.nom}}</li>
+    </ol>
+
+
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> Notes de {{eleve.nom}} {{eleve.prenom}} de la classe de {{eleve.classe.nom}} {{eleve.classe.eff}}
+           <hr>
+            <i class="fa fa-user"></i>Etablissement {{eleve.classe.etbs.nom}}
+        </div>
+        <div class="card-body">
+<a class="btn btn-outline-primary btn-sm" href="" role="button">Matières</a>
+
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                    <thead>
+                    <tr>
+
+
+
+
+                        <th>Matière</th>
+                    <th>Interrogation</th>
+                           <th>Devoir</th>
+                        <th>Moyenne de classe</th>
+                           <th>Composition</th>
+                        <th>Moyenne</th>
+                        <th>Coéficient</th>
+                         <th> Moyenne Coefficiée</th>
+                          <th> Rang</th>
+                        <th> Enseignant</th>
+
+                    </tr>
+                    </thead>
+
+                    <tfoot>
+                    <tr>
+
+                        <th colspan="4" text-align="center">Total des Points</th>
+                        <td colspan="3" text-align="center">{{ eleve.tot1}}</td>
+
+                    </tr>
+                     <tr>
+
+                        <th colspan="4" text-align="center">Total des Coefficients</th>
+                        <td colspan="3" text-align="center">{{ eleve.totcoef}}</td>
+
+                    </tr>
+                     <tr>
+
+                        <th colspan="4" text-align="center">Moyenne Trimestrielle</th>
+                        <td colspan="3" text-align="center">{{ eleve.moy1}}</td>
+                           <th colspan="2" text-align="center">Rang</th>
+                        <td colspan="2" text-align="center">{{ eleve.rang1}}</td>
+
+                    </tr>
+                    </tfoot>
+                    <tbody>
+
+                    {% for note in notes %}
+
+                        <tr>
+                            <td>{{note.matiere.matiere.nom }}</td>
+                            <td>{{note.interro }}</td>
+                             <td>{{note.devoir }}</td>
+                            <td>{{note.moycl}}</td>
+                            <td>{{note.compo}}</td>
+                            <td>{{note.moymat}}
+                            <td>{{note.matiere.coef}}</td>
+                            <td>{{note.moycoef}}</td>
+                            <td>{{note.rang}}</td>
+                            <td>{{note.matiere.enseignant.nom}} {{note.matiere.enseignant.prenom}}</td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+            </div>
+
+            <a class="btn btn-outline-primary btn-sm" href="" role="button">Matières</a>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+{% endblock %}

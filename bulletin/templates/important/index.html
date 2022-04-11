@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}Liste des élèves de la classe de {{matiere.classe.nom}}{% endblock %}
+
+{% block content %}
+
+
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{% url 'home_page' %}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Liste des élèves de la classe de {{matiere.classe.nom}}</li>
+    </ol>
+
+
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> Liste des élèves de la classe de {{matiere.classe.nom}} {{matiere.classe.eff}}
+        </div>
+        <div class="card-body">
+                 <a class="btn btn-outline-primary btn-sm" href="{% url 'matieres_classe' pk=matiere.classe.id %}" role="button">Classe</a>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+
+                       <th>ID</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Sexe</th>
+                        <th>Statut</th>
+                        <th>Moyenne</th>
+                        <th>Rang</th>
+
+                        <th>Action</th>
+
+
+                    </tr>
+                    </thead>
+
+                    <tfoot>
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+
+                        <th>Sexe</th>
+                        <th>Statut</th>
+                        <th>Moyenne</th>
+                        <th>Rang</th>
+
+                        <th>Action</th>
+
+
+                    </tr>
+                    </tfoot>
+                    <tbody>
+
+                    {% for eleve in eleves %}
+
+                        <tr>
+                            <td>{{forloop.counter }}</td>
+                            <td>{{eleve.nom }}</td>
+                            <td>{{eleve.prenom }} </td>
+                             <td>{{eleve.sexe }}</td>
+                            <td>{{eleve.statut }}</td>
+                            <td>{{eleve.moy1 }}</td>
+                            <td>{{eleve.rang1 }}</td>
+
+
+
+
+                            <td><a class="btn btn-outline-primary btn-sm"
+                                   href="{% url 'eleve_show' pk=eleve.id %}" role="button">Detail</a>
+  <a class="btn btn-outline-primary btn-sm" href="{% url 'eleve_edit' pk=eleve.id %}" role="button">Modifier</a>
+                                 <a class="btn btn-outline-primary btn-sm" href="{% url 'register_note' pk=matiere.id id=eleve.id %}" role="button">Noter</a>
+                                 <a class="btn btn-outline-primary btn-sm" href="{% url 'notes_matiere' pk=matiere.id %}" role="button">Notes</a>
+                                 <a class="btn btn-outline-primary btn-sm"
+                                   href="{% url 'elevebul' pk=eleve.id %}" role="button">Bulletin</a>
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+               <a class="btn btn-outline-primary btn-sm" href="{% url 'matieres_classe' pk=matiere.classe.id %}" role="button">Classe</a>
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
+
+{% endblock %}

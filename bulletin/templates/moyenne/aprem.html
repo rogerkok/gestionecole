@@ -1,0 +1,25 @@
+
+{% load static %}
+
+ Travail
+{% if eleve.moy1 < 4 %}
+ Trés Faible
+{% elif eleve.moy1 < 6 %}
+  Faible
+{% elif eleve.moy1 < 8 %}
+  Très Insuffisant
+{% elif eleve.moy1 < 10 %}
+  Insuffisant
+{% elif eleve.moy1 < 12 %}
+   Passable
+{% elif eleve.moy1 < 14 %}
+   Assez-Bien
+{% elif eleve.moy1 < 16 %}
+  Bien
+{% elif eleve.moy1 < 18 %}
+  Très-Bien
+{% elif eleve.moy1 < 20 %}
+ Excéllent
+{% else %}
+ Cette note n'existe pas
+{% endif %}

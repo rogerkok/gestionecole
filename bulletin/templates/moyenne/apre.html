@@ -1,0 +1,24 @@
+{% load static %}
+
+
+{% if note.moymat < 4 %}
+  <td> Trés Faible</td>
+{% elif note.moymat < 6 %}
+  <td> Faible</td>
+{% elif note.moymat < 8 %}
+  <td> Très Insuffisant</td>
+{% elif note.moymat < 10 %}
+  <td> Insuffisant</td>
+{% elif note.moymat < 12 %}
+  <td> Passable</td>
+{% elif note.moymat < 14 %}
+  <td> Assez-Bien</td>
+{% elif note.moymat < 16 %}
+  <td> Bien</td>
+{% elif note.moymat < 18 %}
+  <td> Très-Bien</td>
+{% elif note.moymat < 20 %}
+  <td> Excéllent</td>
+{% else %}
+  <td> Cette note n'existe pas</td>
+{% endif %}
